@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -16,6 +16,7 @@
     :root {
       --ink: #020303;
       --gold: #E0C89B;
+      --muted: rgba(224, 200, 155, 0.72);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -43,9 +44,9 @@
       justify-content: center;
       height: 100dvh;
       padding:
-        max(24px, env(safe-area-inset-top))
+        max(20px, env(safe-area-inset-top))
         max(24px, env(safe-area-inset-right))
-        max(28px, env(safe-area-inset-bottom))
+        max(24px, env(safe-area-inset-bottom))
         max(24px, env(safe-area-inset-left));
     }
 
@@ -53,16 +54,38 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: min(100%, 360px);
-      gap: clamp(28px, 5vh, 40px);
+      width: min(100%, 340px);
+      gap: clamp(18px, 3.6vh, 28px);
     }
 
     .logo {
       display: block;
-      width: min(58vw, 200px);
+      width: min(46vw, 168px);
       height: auto;
-      max-height: 42dvh;
+      max-height: 32dvh;
       object-fit: contain;
+      animation: fade 420ms ease both;
+    }
+
+    .copy {
+      text-align: center;
+      animation: fade 420ms ease 80ms both;
+    }
+
+    .copy h1 {
+      margin: 0;
+      font-size: clamp(18px, 4.4vw, 22px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .copy p {
+      margin: 8px 0 0;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--muted);
     }
 
     .actions {
@@ -70,6 +93,7 @@
       flex-direction: column;
       width: 100%;
       gap: 10px;
+      animation: fade 420ms ease 140ms both;
     }
 
     .btn {
@@ -82,7 +106,6 @@
       border: 0;
       border-radius: 0;
       text-decoration: none;
-      letter-spacing: 0.04em;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
@@ -101,8 +124,11 @@
     }
 
     .btn--line {
+      min-height: 46px;
       background: transparent;
       color: var(--gold);
+      font-size: 14px;
+      font-weight: 500;
       box-shadow: inset 0 0 0 1.5px var(--gold);
     }
 
@@ -124,22 +150,39 @@
       outline-offset: 3px;
     }
 
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @media (orientation: landscape) and (max-height: 500px) {
       .card {
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
         width: auto;
-        max-width: 100%;
-        gap: 36px;
+        max-width: 640px;
+        gap: 20px 32px;
       }
 
       .logo {
-        width: min(28vw, 160px);
-        max-height: 72dvh;
+        width: min(22vw, 132px);
+        max-height: 64dvh;
+      }
+
+      .copy {
+        flex: 1 1 180px;
+        text-align: left;
       }
 
       .actions {
-        width: 240px;
+        flex: 1 1 220px;
+        width: min(100%, 240px);
       }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo, .copy, .actions { animation: none; }
     }
   </style>
 </head>
@@ -148,12 +191,17 @@
     <section class="card">
       <img class="logo" src="logo.svg" alt="Embassy of Burgers" width="200" height="240">
 
-      <nav class="actions" aria-label="Embassy contacts">
-        <a class="btn btn--gold" href="https://t.me/burgerembassy_uzbot">
+      <div class="copy">
+        <h1>Спасибо, что были с нами</h1>
+        <p>Доставка и самовывоз в Telegram</p>
+      </div>
+
+      <nav class="actions" aria-label="Заказ и соцсети">
+        <a class="btn btn--gold" href="https://t.me/burgerembassy_uzbot?start=receipt">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M21.5 4.6 18.7 19c-.2 1-1.4 1.4-2.3.8l-4.8-3.6-2.3 2.3c-.3.3-.7.4-1 .2l.4-4.9L18.2 7c.4-.3 0-.5-.5-.2L7.3 13.4 2.6 12c-1-.3-1-1.2.2-1.8l17.4-6.7c.9-.4 1.8.3 1.3 1.1Z" fill="currentColor"/>
           </svg>
-          Telegram
+          Заказать снова
         </a>
         <a class="btn btn--line" href="https://www.instagram.com/burgerembassyuz/">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -161,7 +209,7 @@
             <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.6"/>
             <circle cx="17.3" cy="6.7" r="1" fill="currentColor"/>
           </svg>
-          Instagram
+          Меню и новинки
         </a>
       </nav>
     </section>
