@@ -114,12 +114,26 @@
       color: var(--ink);
     }
 
+    .btn--line {
+      min-height: 46px;
+      background: transparent;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: inset 0 0 0 1.5px var(--gold);
+    }
+
     .btn:active {
       opacity: 0.82;
     }
 
-    .btn:hover {
+    .btn--gold:hover {
       background: #ead4ae;
+    }
+
+    .btn--line:hover {
+      background: var(--gold);
+      color: var(--ink);
     }
 
     .btn:focus-visible {
@@ -179,7 +193,7 @@
           </svg>
           Заказать снова
         </a>
-        <a class="btn btn--gold" href="https://www.instagram.com/burgerembassyuz/">
+        <a class="btn btn--line" href="https://www.instagram.com/burgerembassyuz/">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" stroke="currentColor" stroke-width="1.6"/>
             <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.6"/>
